@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -11,6 +13,8 @@ body {
     height: 100vh;
     width: 100%;
     background-color: #f0f0f0;
+    font-family: "Lato", sans-serif;
+    font-size: 15px;
 }
 
 .container {
@@ -37,6 +41,33 @@ body {
     margin-bottom: 10px;
 }
 
-#caption {
-    font-size: 15px;
+.total-expense {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 1.5rem 1rem;
+    border-radius: 5px;
+    width: 100%;
+    font-family: "Intel One Mono", sans-serif;
+}
+
+#new-btn {
+    background-color: #0D1C42;
+    color: whitesmoke;
+    padding: 0.55rem 4rem;
+    font-variant-caps: all-small-caps;
+    font-weight: bold;
+    align-self: flex-start;
+    border: none;
+    border-radius: 5px;
+}
+
+#new-btn:hover {
+    cursor: pointer;
+    background-color: #22396F;
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
+    transform: translateY(-5px);
 }
