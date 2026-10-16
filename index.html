@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <main class="container">
         <div class="header">
@@ -20,6 +22,33 @@
         </div>
 
         <button id="new-btn">New Expense</button>
+
+        <div class="modal">
+            <div class="modal-content">
+                <h1>New Expense</h1>
+                    <form id="expense-form">
+                        <input type="date" id="date" required>
+                        <input type="text" id="description" placeholder="Description" required>
+                        <input type="number" id="amount" placeholder="Amount" required>
+                        <select id="category" required>
+                            <option value="">Category</option>
+                            <option value="food">Food</option>
+                            <option value="dining">Dining</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="bills">Bills</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="Health">Health</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="buttons">
+                            <button id="add-btn">Add Expense</button>
+                            <button id="cancel-btn">Cancel</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
     </main>
 </body>
+
 </html>
