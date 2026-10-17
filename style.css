@@ -20,7 +20,8 @@ body {
 
 .container {
     height: 100vh;
-    width: 85%;
+    width: 100%;
+    max-width: 900px;
     background-color: #fff;
     border-radius: 10px;
     display: flex;
