@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    color: #333;
 }
 
 body {
@@ -58,11 +59,12 @@ body {
     background-color: #0D1C42;
     color: whitesmoke;
     padding: 0.55rem 4rem;
-    font-variant-caps: all-small-caps;
+    text-transform: uppercase;
     font-weight: bold;
     align-self: flex-start;
     border: none;
     border-radius: 5px;
+    font-size: 11px;
 }
 
 #new-btn:hover {
@@ -138,4 +140,65 @@ form .buttons {
     background-color: #4BB3F3;
     cursor: pointer;
     transform: scale(1.05);
+}
+
+.table-wrapper {
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.table-wrapper h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 12px;
+}
+
+#expenses {
+    width: 100%;
+}
+
+.table-header th {
+    color: whitesmoke;
+    background-color: #0D1C42;
+    padding: 15px;
+    border: 1px solid #0D1C42;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #333;
+}
+
+td:nth-child(1),
+td:nth-child(5) {
+    text-align: center;
+    width: 150px;
+}
+
+td:nth-child(2),
+td:nth-child(3), 
+td:nth-child(4) {
+    text-align: right;
+}
+
+.action-btns {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.action-btns button {
+    border: none;
+    font-size: 10px;
+    padding: 3px 15px;
+    border-radius: 5px;
+}
+
+.action-btns button:hover {
+    cursor: pointer;
+    background-color: #a6a5a5;
 }
