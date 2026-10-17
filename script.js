@@ -1,5 +1,5 @@
 // CACHE VALUES
-const total = document.getElementById('total');
+const totalDisplay = document.getElementById('total');
 const newBtn = document.getElementById('new-btn');
 const expenseModal = document.getElementById('modal');
 const expenseDate = document.getElementById('date');
@@ -11,6 +11,7 @@ const cancelBtn = document.getElementById('cancel-btn');
 const expenseForm = document.getElementById('expense-form');
 const expensesList = [];
 const expenseTable = document.getElementById('expense-data');
+const total = 0;
 
 // FUNCTIONS
 const addExpense = () => {
@@ -34,13 +35,13 @@ const addExpense = () => {
 
     // console.log(expensesList, "Submitted!");
     renderExpense();
-
+    calculateTotal();
 
     expenseForm.reset();
     expenseModal.style.display = "none";
 
     editingExpenseId = null;
-    addBtn.textContent = "Add Expense"
+    addBtn.textContent = "Add Expense";
 };
 
 const renderExpense = () => {
@@ -60,7 +61,7 @@ const renderExpense = () => {
                                 <p>${expense.category}</p>
                             </td>
                             <td>
-                                <p>$${expense.amount}</p>
+                                <p>$${expense.amount.toFixed(2)}</p>
                             </td>
                             <td>
                                 <div class="action-btns">
@@ -74,11 +75,19 @@ const renderExpense = () => {
     });
 };
 
+const calculateTotal = () => {
+    const totalCost = expensesList.reduce((accumulator, expense) => {
+        return accumulator + expense.amount;
+    }, 0);
+
+    totalDisplay.innerHTML = `$${totalCost.toFixed(2)}`
+};
+
 // EVENT LISTENERS
 newBtn.addEventListener('click', () => {
     editingExpenseId = null;
     expenseForm.reset();
-    addBtn.textContent = "Add Expense"
+    addBtn.textContent = "Add Expense";
     expenseModal.style.display = "flex";
 });
 
@@ -100,6 +109,7 @@ expenseTable.addEventListener('click', (e) => {
 
         expensesList.splice(rowIndex, 1);
         renderExpense();
+        calculateTotal();
         console.log('Expense Deleted!');
     }
 
@@ -118,5 +128,7 @@ expenseTable.addEventListener('click', (e) => {
 
         addBtn.textContent = "Save Changes";
         expenseModal.style.display = 'flex';
+
+        calculateTotal();
     }
 });
