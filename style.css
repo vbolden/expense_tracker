@@ -77,25 +77,32 @@ body {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
+    z-index: 1000;
+    inset: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    overflow-y: auto;
 }
 
 .modal-content {
     background-color: #fff;
-    margin: 25% auto;
-    padding: 20px 30px;
+    padding: 24px 30px;
     border: 1px solid #888;
     border-radius: 10px;
-    width: 560px;
-    height: 355px;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
 }
 
 .modal-content h1 {
+    margin-top: 0;
     margin-bottom: 1.25rem;
 }
 
@@ -105,15 +112,16 @@ body {
     gap: 1rem;
 }
 
-#expense-form input, 
+#expense-form input,
 select {
     border: none;
     border-radius: 10px;
     background-color: #EEEEEE;
     padding: 10px;
+    width: 100%;
 }
 
-select:invalid, 
+select:invalid,
 input::placeholder,
 input[type=date]:invalid {
     color: #999999;
@@ -121,11 +129,13 @@ input[type=date]:invalid {
 
 form .buttons {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
 }
 
-#add-btn, #cancel-btn {
-    width: 49%;
+#add-btn,
+#cancel-btn {
+    flex: 1;
+    min-width: 0;
     padding: 0.95rem 0;
     border: none;
     border-radius: 5px;
@@ -135,7 +145,7 @@ form .buttons {
     font-weight: bold;
 }
 
-#add-btn:hover, 
+#add-btn:hover,
 #cancel-btn:hover {
     background-color: #4BB3F3;
     cursor: pointer;
@@ -145,6 +155,8 @@ form .buttons {
 .table-wrapper {
     width: 100%;
     margin-top: 4rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .table-wrapper h2 {
@@ -155,9 +167,6 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     font-size: 12px;
-}
-
-#expenses {
     width: 100%;
 }
 
@@ -180,7 +189,7 @@ td:nth-child(5) {
 }
 
 td:nth-child(2),
-td:nth-child(3), 
+td:nth-child(3),
 td:nth-child(4) {
     text-align: right;
 }
@@ -189,6 +198,7 @@ td:nth-child(4) {
     display: flex;
     gap: 6px;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .action-btns button {
@@ -201,4 +211,37 @@ td:nth-child(4) {
 .action-btns button:hover {
     cursor: pointer;
     background-color: #a6a5a5;
+}
+
+/* Responsive Layout */
+
+@media (max-width: 600px) {
+    table {
+        min-width: 600px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        padding: 12px;
+    }
+
+    .modal-content {
+        padding: 20px;
+        max-height: calc(100dvh - 24px);
+    }
+
+    .modal-content h1 {
+        font-size: 1.5rem;
+    }
+
+    #expense-form {
+        gap: 0.75rem;
+    }
 }
