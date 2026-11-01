@@ -58,6 +58,20 @@ const addExpense = () => {
 const renderExpense = () => {
     expenseTable.innerHTML = "";
 
+    if (expensesList.length === 0) {
+        const noExpenses = document.createElement('tr');
+        noExpenses.classList.add("empty-container");
+
+        noExpenses.innerHTML = `
+                            <td colspan="5">
+                                <p>Add your first expense above to start tracking your spending.</p>
+                            </td>
+        `;
+
+        expenseTable.appendChild(noExpenses);
+        return;
+    }
+
     expensesList.forEach((expense) => {
         const newExpense = document.createElement("tr");
 
@@ -73,9 +87,9 @@ const renderExpense = () => {
                             </td>
                             <td>
                                 <p>$${expense.amount.toLocaleString('en-US', {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2
-                                })}</p>
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}</p>
                             </td>
                             <td>
                                 <div class="action-btns">

@@ -214,6 +214,13 @@ td:nth-child(4) {
     background-color: #a6a5a5;
 }
 
+.empty-container {
+    height: 300px;
+    max-height: 300px;
+    font-family: 'Intel One Mono', sans-serif;
+    font-size: larger;
+}
+
 /* Responsive Layout */
 
 @media (max-width: 600px) {
