@@ -9,14 +9,24 @@ const expenseCategory = document.getElementById('category');
 const addBtn = document.getElementById('add-btn');
 const cancelBtn = document.getElementById('cancel-btn');
 const expenseForm = document.getElementById('expense-form');
-const expensesList = [];
+let expensesList = [];
 const expenseTable = document.getElementById('expense-data');
 const total = 0;
+
+// RETRIEVE FROM LOCAL STORAGE
+window.addEventListener('load', () => {
+    const savedExpenseList = localStorage.getItem('expenseList');
+    expensesList = savedExpenseList ? JSON.parse(savedExpenseList) : [];
+
+    // console.log(expensesList);
+    renderExpense();
+    calculateTotal();
+});
 
 // FUNCTIONS
 const addExpense = () => {
     const expense = {
-        id: crypto.randomUUID(),
+        id: editingExpenseId ? editingExpenseId : crypto.randomUUID(),
         date: expenseDate.value,
         description: expenseDescription.value,
         category: expenseCategory.value,
@@ -36,6 +46,7 @@ const addExpense = () => {
     // console.log(expensesList, "Submitted!");
     renderExpense();
     calculateTotal();
+    saveExpenses();
 
     expenseForm.reset();
     expenseModal.style.display = "none";
@@ -61,7 +72,7 @@ const renderExpense = () => {
                                 <p>${expense.category}</p>
                             </td>
                             <td>
-                                <p>$${expense.amount.toFixed(2)}</p>
+                                <p>$${Number(expense.amount.toFixed(2)).toLocaleString('en-US')}</p>
                             </td>
                             <td>
                                 <div class="action-btns">
@@ -80,7 +91,12 @@ const calculateTotal = () => {
         return accumulator + expense.amount;
     }, 0);
 
-    totalDisplay.innerHTML = `$${totalCost.toFixed(2)}`
+    totalDisplay.innerHTML = `$${Number(totalCost.toFixed(2)).toLocaleString('en-US')}`;
+};
+
+const saveExpenses = () => {
+    // SAVE TO LOCAL STORAGE
+    localStorage.setItem('expenseList', JSON.stringify(expensesList));
 };
 
 // EVENT LISTENERS
@@ -111,6 +127,7 @@ expenseTable.addEventListener('click', (e) => {
         renderExpense();
         calculateTotal();
         console.log('Expense Deleted!');
+        saveExpenses();
     }
 
     // EDIT BUTTON
