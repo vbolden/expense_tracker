@@ -72,7 +72,10 @@ const renderExpense = () => {
                                 <p>${expense.category}</p>
                             </td>
                             <td>
-                                <p>$${Number(expense.amount.toFixed(2)).toLocaleString('en-US')}</p>
+                                <p>$${expense.amount.toLocaleString('en-US', {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                })}</p>
                             </td>
                             <td>
                                 <div class="action-btns">
@@ -91,7 +94,10 @@ const calculateTotal = () => {
         return accumulator + expense.amount;
     }, 0);
 
-    totalDisplay.innerHTML = `$${Number(totalCost.toFixed(2)).toLocaleString('en-US')}`;
+    totalDisplay.innerHTML = `$${totalCost.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
 };
 
 const saveExpenses = () => {
